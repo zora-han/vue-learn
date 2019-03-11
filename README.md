@@ -1,6 +1,6 @@
 # vue-learn
 
-> vue基础信息
+> vue基础练习
 
 ## Build Setup
 
