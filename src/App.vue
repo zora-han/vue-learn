@@ -3,8 +3,11 @@
 
 <template>
   <div id="app">
-    <h1>{{title}}</h1>
-    <users></users>
+    <app-header v-bind:title='title' v-on:titleChanged='updateTitle($event)'></app-header>
+    <!-- 父给子属性传值1 -->
+    <users v-bind:users='users'></users>
+    <users v-bind:users='users'></users>
+    <app-footer v-bind:title='title'></app-footer>
   </div>
 </template>
 
@@ -12,17 +15,32 @@
 <script>
 // 局部注册组件
 import Users from './components/Users'
+import Header from './components/Header'
+import Footer from './components/Footer'
+
 
 
 export default {
   name: 'app',
   data(){
     return{
-      title:'这是我的第一个vue脚手架项目'
+      title:'这是我的第一个vue脚手架项目',
+      users:[
+          {name:'Henry',position:'WEB开发',show:false},
+          {name:'Bucky',position:'JAVA开发',show:true},
+          {name:'Emily',position:'PATHON开发',show:false},
+        ]
     }
   },
+  methods:{
+    updateTitle(title) {
+      this.title=title;
+    },
+  },
   components:{
-    'users':Users // 不可以使用和系统标签相同的名称
+    'users':Users, // 不可以使用和系统标签相同的名称
+    'app-header':Header,
+    'app-footer':Footer
   }
 }
 
